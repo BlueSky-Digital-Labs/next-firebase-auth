@@ -1,25 +1,15 @@
 # next-firebase-auth
 A collection of providers, hooks and functions to authenticate users using firebase
 
-
-## Setup
-
-`npm install`
-
-## build
-
-`npm run build`
-
-## Publish
-
-`npm run release`
-  - select major if changing the way the package works
-  - select minor if adding a new feature
-  - select patch if making a bug fix or internal change
-
 # Usage
 
-## Step 1. Add firebase config to your project
+## Step 1. Install
+
+```bash
+npm install @BlueSky-Digital-Labs/next-firebase-auth
+```
+
+## Step 2. Add Firebase config to your project
 
 Either in the env section of `next.config.js` or in a file called `.env` or `.env.local` / `.env.development` / `.env.production` / `.env.test`, please fill out these environment variables:
 
@@ -34,7 +24,7 @@ Either in the env section of `next.config.js` or in a file called `.env` or `.en
 
 Some of these are optional, just use the ones firebase has provided.
 
-## Step 2. Add `<FirebaseProvider>` around your app.
+## Step 3. Add `<FirebaseProvider>` around your app.
 I recommend you do this in `pages/_app.tsx`. Using the `useFirebase` in a component that is outside of the provider will not work.
 
 ```tsx
@@ -216,3 +206,24 @@ Opens up a pop-up window to sign in with Microsoft.
 ```tsx
 await auth.microsoft();
 ```
+
+# Development
+
+## Clone
+
+`gh repo clone BlueSky-Digital-Labs/next-firebase-auth`
+
+## Setup
+
+`npm install`
+
+## build
+
+`npm run build`
+
+## Publish
+
+`npm run release`
+  - select major if changing the way the package works
+  - select minor if adding a new feature
+  - select patch if making a bug fix or internal change
