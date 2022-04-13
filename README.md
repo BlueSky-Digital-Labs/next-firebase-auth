@@ -19,7 +19,23 @@ A collection of providers, hooks and functions to authenticate users using fireb
 
 # Usage
 
-To setup, please adding `<FirebaseProvider>` around your app, I recommend you do this in `pages/_app.tsx`. Using the `useFirebase` in a component that is outside of the provider will not work.
+## Step 1. Add firebase config to your project
+
+Either in the env section of `next.config.js` or in a file called `.env` or `.env.local` / `.env.development` / `.env.production` / `.env.test`, please fill out these environment variables:
+
+- `NEXT_PUBLIC_FIREBASE_API_Key`
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `NEXT_PUBLIC_FIREBASE_DATABASE_URL`
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+- `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+- `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+- `NEXT_PUBLIC_FIREBASE_APP_ID`
+- `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
+
+Some of these are optional, just use the ones firebase has provided.
+
+## Step 2. Add `<FirebaseProvider>` around your app.
+I recommend you do this in `pages/_app.tsx`. Using the `useFirebase` in a component that is outside of the provider will not work.
 
 ```tsx
 import type { AppProps } from "next/app";
