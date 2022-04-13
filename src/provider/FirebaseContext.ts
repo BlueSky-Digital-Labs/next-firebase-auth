@@ -29,4 +29,6 @@ export const FirebaseContext = createContext<FirebaseStore>({
     github: ErrorFunction,
     microsoft: ErrorFunction,
   },
+  firebaseApp: undefined,
+  firebaseAuth: undefined,
 });

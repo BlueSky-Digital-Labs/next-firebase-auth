@@ -1,4 +1,5 @@
-import { User } from "firebase/auth";
+import type { FirebaseApp } from "firebase/app";
+import type { Auth, User } from "firebase/auth";
 
 // You may ask why are all the login functions returning void when they could return the user
 // this is to force developers to use the firebase hook to access user instead of trying
@@ -28,6 +29,8 @@ export interface FirebaseStore {
     github: () => Promise<void>;
     microsoft: () => Promise<void>;
   };
+  firebaseApp: FirebaseApp | undefined;
+  firebaseAuth: Auth | undefined;
 }
 
 export interface Credentials {

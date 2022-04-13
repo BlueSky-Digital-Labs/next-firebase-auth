@@ -38,8 +38,8 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
   const inBrowser = typeof window !== "undefined";
 
   const [loading, setLoading] = useState(true);
-  const [firebase] = useState(inBrowser ? initializeApp(config) : undefined);
-  const [firebaseAuth] = useState(firebase ? getAuth(firebase) : undefined);
+  const [firebaseApp] = useState(inBrowser ? initializeApp(config) : undefined);
+  const [firebaseAuth] = useState(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -187,6 +187,8 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
     auth,
     logout,
     loading,
+    firebaseApp,
+    firebaseAuth,
   };
 
   return <FirebaseContext.Provider value={values}>{children}</FirebaseContext.Provider>;
