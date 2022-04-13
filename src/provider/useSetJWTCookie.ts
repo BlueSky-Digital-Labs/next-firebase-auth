@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
 import { JWT_COOKIE_NAME } from "../config";
 import { setCookie } from "nookies";
 
-export const useSetJWTCookie = (user: User | null) => {
+export const useJWT = (user: User | null) => {
+  const [jwt, setJwt] = useState<string | undefined>(undefined);
+
   useEffect(() => {
     if (!user) return;
     (async () => {
       const jwt = await user.getIdToken();
+
+      setJwt(jwt);
 
       const { expirationTime } = await user.getIdTokenResult();
 
@@ -23,5 +27,5 @@ export const useSetJWTCookie = (user: User | null) => {
     })();
   }, [user]);
 
-  return;
+  return jwt;
 };

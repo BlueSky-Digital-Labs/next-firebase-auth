@@ -7,6 +7,7 @@ import type { Auth, User } from "firebase/auth";
 
 export interface FirebaseStore {
   user: User | null;
+  jwt: string | undefined;
   loading: boolean;
   logout: () => Promise<void>;
   auth: {

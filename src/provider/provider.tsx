@@ -25,7 +25,7 @@ import {
 import type { User } from "firebase/auth";
 import { config, JWT_COOKIE_NAME } from "../config";
 import { destroyCookie } from "nookies";
-import { useSetJWTCookie } from "./useSetJWTCookie";
+import { useJWT } from "./useSetJWTCookie";
 import { FirebaseContext } from "./FirebaseContext";
 import { Credentials, FirebaseStore } from "./FirebaseStore";
 
@@ -41,6 +41,7 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
   const [firebaseApp] = useState(inBrowser ? initializeApp(config) : undefined);
   const [firebaseAuth] = useState(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
+  const jwt = useJWT(user);
 
   useEffect(() => {
     if (!firebaseAuth) return;
@@ -52,8 +53,6 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
       setUser(user);
     });
   }, [firebaseAuth]);
-
-  useSetJWTCookie(user);
 
   const logout = async () => {
     if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
@@ -184,6 +183,7 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
 
   const values: FirebaseStore = {
     user,
+    jwt,
     auth,
     logout,
     loading,
