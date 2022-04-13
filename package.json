@@ -1,0 +1,23 @@
+{
+  "name": "@bluesky/next-firebase-auth",
+  "version": "0.0.0",
+  "description": "A collection of providers, hooks and functions to authenticate users using firebase",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "release": "bumpp --commit --push --tag",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueSky-Digital-Labs/next-firebase-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BlueSky-Digital-Labs/next-firebase-auth/issues"
+  },
+  "homepage": "https://github.com/BlueSky-Digital-Labs/next-firebase-auth#readme",
+  "devDependencies": {
+    "bumpp": "^7.1.1",
+    "typescript": "^4.6.3"
+  }
+}
