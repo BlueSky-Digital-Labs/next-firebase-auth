@@ -11,7 +11,7 @@ export const useVerifyEmail = ({ code }: { code: string }) => {
     (async () => {
       setLoading(true);
       try {
-        await auth.email.verifyEmail({ code });
+        await auth.email.verify({ code });
         setSuccess(true);
       } catch (error) {
         setSuccess(false);

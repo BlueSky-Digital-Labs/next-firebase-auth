@@ -15,7 +15,7 @@ export interface FirebaseStore {
       login: ({ email, password }: Credentials) => Promise<void>;
       updatePassword: ({ newPassword }: { newPassword: string }) => Promise<void>;
       register: ({ email, password, redirect }: Credentials & { redirect: string }) => Promise<void>;
-      verifyEmail: ({ code }: { code: string }) => Promise<void>;
+      verify: ({ code }: { code: string }) => Promise<void>;
       sendPasswordResetEmail: ({ email, redirect }: { email: string; redirect: string }) => Promise<void>;
       verifyPasswordResetCode: ({ code }: { code: string }) => Promise<string>;
       confirmPasswordReset: ({ code, newPassword }: { code: string; newPassword: string }) => Promise<void>;

@@ -31,10 +31,9 @@ import { Credentials, FirebaseStore } from "./FirebaseStore";
 
 interface FirebaseProviderProps {
   children: React.ReactNode;
-  domain: string;
 }
 
-export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) => {
+export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
   const inBrowser = typeof window !== "undefined";
 
   const [loading, setLoading] = useState(true);
@@ -75,26 +74,27 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
         return;
       },
 
-      register: async ({ email, password, redirect }: Credentials & { redirect: string }) => {
+      register: async ({ email, password, redirect = "/" }: Credentials & { redirect?: string }) => {
         if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
         const { user } = await createUserWithEmailAndPassword(firebaseAuth, email, password);
         await sendEmailVerification(user, {
-          url: domain + redirect,
+          url: redirect,
         });
         return;
       },
 
-      verifyEmail: async ({ code }: { code: string }) => {
+      verify: async ({ code }: { code: string }) => {
         if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
         await applyActionCode(firebaseAuth, code);
         return;
       },
 
       // calling this will send an email to the user with a link to reset there password
-      sendPasswordResetEmail: async ({ email, redirect }: { email: string; redirect: string }) => {
+      // redirect here is to redirect after the user sets there new password, eg the home page
+      sendPasswordResetEmail: async ({ email, redirect = "/" }: { email: string; redirect?: string }) => {
         if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
         await sendPasswordResetEmail(firebaseAuth, email, {
-          url: domain + redirect,
+          url: redirect,
         });
         return;
       },
@@ -118,7 +118,7 @@ export const FirebaseProvider = ({ children, domain }: FirebaseProviderProps) =>
       // if you want to sign in a user, without them setting a password
       // this will send them a code in an email
       // then call the code function to sign them in
-      sendSignInLinkToEmail: async ({ email, redirect }: { email: string; redirect: string }) => {
+      sendSignInLinkToEmail: async ({ email, redirect = "/" }: { email: string; redirect?: string }) => {
         if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
         await sendSignInLinkToEmail(firebaseAuth, email, {
           url: redirect,

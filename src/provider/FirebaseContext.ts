@@ -15,7 +15,7 @@ export const FirebaseContext = createContext<FirebaseStore>({
       login: ErrorFunction,
       updatePassword: ErrorFunction,
       register: ErrorFunction,
-      verifyEmail: ErrorFunction,
+      verify: ErrorFunction,
       sendPasswordResetEmail: ErrorFunction,
       verifyPasswordResetCode: ErrorFunction,
       confirmPasswordReset: ErrorFunction,
