@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "A collection of providers, hooks and functions to authenticate users using firebase",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "package.json",
     "dist"
