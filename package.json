@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/BlueSky-Digital-Labs/next-firebase-auth.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "bugs": {
     "url": "https://github.com/BlueSky-Digital-Labs/next-firebase-auth/issues"
   },
