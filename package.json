@@ -1,9 +1,12 @@
 {
   "name": "@bluesky/next-firebase-auth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A collection of providers, hooks and functions to authenticate users using firebase",
   "main": "dist/index.js",
-  "files": ["package.json", "dist"],
+  "files": [
+    "package.json",
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "release": "bumpp --commit --push --tag",
