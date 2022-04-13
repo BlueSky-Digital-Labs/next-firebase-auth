@@ -32,7 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: "https://npm.pkg.github.com"
-          scope: "{{ github.repository.owner }}"
+          scope: "@BlueSky-Digital-Labs"
 
       - name: Publish Package
         run: npm publish
