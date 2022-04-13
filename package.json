@@ -1,6 +1,6 @@
 {
   "name": "@bluesky-digital-labs/next-firebase-auth",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A collection of providers, hooks and functions to authenticate users using firebase",
   "type": "module",
   "source": "src/index.ts",
