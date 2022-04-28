@@ -34,6 +34,7 @@ const AuthLoginPage = () => {
         />
         <button type="submit">Login</button>
       </form>
+      <button onClick={auth.google}>Login With Google</button>
       <Link href="/auth/register">Register</Link>
       <Link href="/auth/forgot-password">Forgot Password</Link>
     </>
