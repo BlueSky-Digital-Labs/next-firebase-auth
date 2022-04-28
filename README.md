@@ -1,6 +1,8 @@
 # next-firebase-auth
 A collection of providers, hooks and functions to authenticate users using firebase
 
+[![npm version](https://badge.fury.io/js/@bluesky-digital-labs%2Fnext-firebase-auth.svg)](https://www.npmjs.com/package/@bluesky-digital-labs/next-firebase-auth)
+
 # Usage
 
 ## Step 1. Install
