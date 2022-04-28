@@ -28,7 +28,7 @@ import React, { useEffect, useState } from "react";
 import { config, JWT_COOKIE_NAME } from "../config";
 import { FirebaseContext } from "./FirebaseContext";
 import { Credentials, FirebaseStore } from "./FirebaseStore";
-import { useJWT } from "./useSetJWTCookie";
+import { useJWT } from "./useJWT";
 
 interface FirebaseProviderProps {
   children: React.ReactNode;

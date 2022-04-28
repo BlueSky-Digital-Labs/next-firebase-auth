@@ -15,6 +15,8 @@ npm install @BlueSky-Digital-Labs/next-firebase-auth
 
 Either in the env section of `next.config.js` or in a file called `.env` or `.env.local` / `.env.development` / `.env.production` / `.env.test`, please fill out these environment variables:
 
+- (optional) `JWT_COOKIE_NAME`: The name of the cookie that will be used to store the JWT token. Defaults to `jwt`.
+
 - `NEXT_PUBLIC_FIREBASE_API_Key`
 - `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
 - `NEXT_PUBLIC_FIREBASE_DATABASE_URL`
@@ -24,7 +26,7 @@ Either in the env section of `next.config.js` or in a file called `.env` or `.en
 - `NEXT_PUBLIC_FIREBASE_APP_ID`
 - `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
 
-Some of these are optional, just use the ones firebase has provided.
+Some of the firebase envs are optional, just use the ones firebase has provided.
 
 ## Step 3. Add `<FirebaseProvider>` around your app.
 I recommend you do this in `pages/_app.tsx`. Using the `useFirebase` in a component that is outside of the provider will not work.

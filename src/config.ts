@@ -11,4 +11,4 @@ export const config: FirebaseOptions = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-export const JWT_COOKIE_NAME = "jwt";
+export const JWT_COOKIE_NAME = process.env.JWT_COOKIE_NAME || "jwt";
