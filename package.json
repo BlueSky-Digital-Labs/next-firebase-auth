@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/BlueSky-Digital-Labs/next-firebase-auth#readme",
   "dependencies": {
-    "firebase": "^9.6.10",
+    "firebase": "^9.6.11",
     "nookies": "^2.5.2"
   },
   "peerDependencies": {
