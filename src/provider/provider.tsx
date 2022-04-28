@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   FacebookAuthProvider,
   getAuth,
+  connectAuthEmulator,
   GithubAuthProvider,
   GoogleAuthProvider,
   OAuthProvider,
@@ -33,9 +34,16 @@ import { useJWT } from "./useJWT";
 interface FirebaseProviderProps {
   children: React.ReactNode;
   initialJwt?: string;
+  useEmulator?: boolean;
+  emulatorHost?: string;
 }
 
-export const FirebaseProvider = ({ children, initialJwt }: FirebaseProviderProps) => {
+export const FirebaseProvider = ({
+  children,
+  initialJwt = undefined,
+  useEmulator = false,
+  emulatorHost = "http://localhost:9099",
+}: FirebaseProviderProps) => {
   const inBrowser = typeof window !== "undefined";
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -43,6 +51,12 @@ export const FirebaseProvider = ({ children, initialJwt }: FirebaseProviderProps
   const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
   const jwt = useJWT(user, initialJwt);
+
+  useEffect(() => {
+    if (firebaseAuth && useEmulator) {
+      connectAuthEmulator(firebaseAuth, emulatorHost);
+    }
+  }, [firebaseAuth, useEmulator, emulatorHost]);
 
   useEffect(() => {
     if (!firebaseAuth) return;
