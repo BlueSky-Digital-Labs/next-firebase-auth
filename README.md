@@ -101,7 +101,10 @@ import { getToken } from "@bluesky-digital-labs/next-firebase-auth";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
-  const token = getToken(req);
+  const jwt = getToken(req);
+
+  // call your api with the jwt in the `Authorization` header
+  // your api will need to use firebase-admin to decode and verify the token
 
 };
 ```
