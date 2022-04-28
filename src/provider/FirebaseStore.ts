@@ -9,6 +9,7 @@ export interface FirebaseStore {
   user: User | null;
   jwt: string | undefined;
   loading: boolean;
+  loggedIn: boolean;
   logout: () => Promise<void>;
   auth: {
     email: {

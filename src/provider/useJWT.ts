@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
-import { JWT_COOKIE_NAME } from "../config";
 import { setCookie } from "nookies";
+import { useEffect, useState } from "react";
+import { JWT_COOKIE_NAME } from "../config";
 
-export const useJWT = (user: User | null) => {
-  const [jwt, setJwt] = useState<string | undefined>(undefined);
+export const useJWT = (user: User | null, initialJwt?: string) => {
+  const [jwt, setJwt] = useState<string | undefined>(initialJwt);
 
   useEffect(() => {
     if (!user) return;

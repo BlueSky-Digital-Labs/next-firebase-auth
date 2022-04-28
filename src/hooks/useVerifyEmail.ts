@@ -1,5 +1,5 @@
-import { useFirebase } from "../index";
 import { useEffect, useState } from "react";
+import { useFirebase } from "../index";
 
 export const useVerifyEmail = ({ code }: { code: string }) => {
   const { auth } = useFirebase();

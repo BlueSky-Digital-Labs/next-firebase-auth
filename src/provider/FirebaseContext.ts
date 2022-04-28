@@ -9,6 +9,7 @@ export const FirebaseContext = createContext<FirebaseStore>({
   user: null,
   jwt: undefined,
   loading: true,
+  loggedIn: false,
   logout: ErrorFunction,
   auth: {
     email: {

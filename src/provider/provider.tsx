@@ -32,16 +32,17 @@ import { useJWT } from "./useJWT";
 
 interface FirebaseProviderProps {
   children: React.ReactNode;
+  initialJwt?: string;
 }
 
-export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
+export const FirebaseProvider = ({ children, initialJwt }: FirebaseProviderProps) => {
   const inBrowser = typeof window !== "undefined";
 
   const [loading, setLoading] = useState<boolean>(true);
   const [firebaseApp] = useState<FirebaseApp | undefined>(inBrowser ? initializeApp(config) : undefined);
   const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
-  const jwt = useJWT(user);
+  const jwt = useJWT(user, initialJwt);
 
   useEffect(() => {
     if (!firebaseAuth) return;
@@ -190,6 +191,7 @@ export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
     loading,
     firebaseApp,
     firebaseAuth,
+    loggedIn: !!jwt,
   };
 
   return <FirebaseContext.Provider value={values}>{children}</FirebaseContext.Provider>;

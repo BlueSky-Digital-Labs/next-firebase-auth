@@ -44,6 +44,8 @@ const MyApp = ({ pageProps }: AppProps) => {
 };
 ```
 
+FirebaseProvider has one possible prop (besides children), its got `initialJwt`, If you are using the `getToken` function to get the users jwt server side, you can pass it in here. the loggedIn field from useFirebase will be true if there is a jwt.
+
 ## To consume the provider use `useFirebase`, the main hook exposed by the library.
 
 ```tsx
@@ -59,6 +61,7 @@ const MyComponent = () => {
 This hook has four main properties, `user`, `loading`, `auth` and `logout`.
   - `user` is the current user, will be `null` if the user is signed out, but once they use a sign in method, this becomes populated.
   - `loading` is a boolean, its true while firebase is initialising and while it checks if the user is logged in.
+  - `loggedIn` is a boolean, it is true if the user has a jwt token.
   - `auth` contains a range of methods to sign in the user, and some to manage accounts that use email and password. Please see the reference below.
   - `logout` is a function that will log the user out, setting `user` to null.
 
@@ -107,6 +110,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   // call your api with the jwt in the `Authorization` header
   // your api will need to use firebase-admin to decode and verify the token
+
+  return {
+    props: {
+      initialJwt: jwt
+    }
+  };
 
 };
 ```

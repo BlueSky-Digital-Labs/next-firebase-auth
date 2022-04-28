@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFirebase } from "../index";
 
 export const useValidPasswordResetCode = ({ code }: { code: string }) => {
