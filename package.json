@@ -18,7 +18,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "microbundle --jsx React.createElement",
+    "build": "microbundle --jsx React.createElement --no-compress",
+    "build:watch": "microbundle watch --jsx React.createElement --no-compress",
     "release": "bumpp --commit --push --tag",
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit -w",
@@ -29,7 +30,7 @@
     "url": "git+https://github.com/BlueSky-Digital-Labs/next-firebase-auth.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "bugs": {
     "url": "https://github.com/BlueSky-Digital-Labs/next-firebase-auth/issues"

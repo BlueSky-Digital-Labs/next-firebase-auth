@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
+import type { FirebaseApp } from "firebase/app";
 import { initializeApp } from "firebase/app";
+import type { Auth, User } from "firebase/auth";
 import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
   applyActionCode,
-  sendPasswordResetEmail,
-  updatePassword,
-  verifyPasswordResetCode,
   confirmPasswordReset,
+  createUserWithEmailAndPassword,
+  FacebookAuthProvider,
+  getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  OAuthProvider,
+  onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  sendSignInLinkToEmail,
   signInAnonymously,
+  signInWithEmailAndPassword,
   signInWithEmailLink,
   signInWithPopup,
-  sendSignInLinkToEmail,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  OAuthProvider,
+  signOut,
   TwitterAuthProvider,
-  GithubAuthProvider,
+  updatePassword,
+  verifyPasswordResetCode,
 } from "firebase/auth";
-import type { User } from "firebase/auth";
-import { config, JWT_COOKIE_NAME } from "../config";
 import { destroyCookie } from "nookies";
-import { useJWT } from "./useSetJWTCookie";
+import React, { useEffect, useState } from "react";
+import { config, JWT_COOKIE_NAME } from "../config";
 import { FirebaseContext } from "./FirebaseContext";
 import { Credentials, FirebaseStore } from "./FirebaseStore";
+import { useJWT } from "./useSetJWTCookie";
 
 interface FirebaseProviderProps {
   children: React.ReactNode;
@@ -36,9 +37,9 @@ interface FirebaseProviderProps {
 export const FirebaseProvider = ({ children }: FirebaseProviderProps) => {
   const inBrowser = typeof window !== "undefined";
 
-  const [loading, setLoading] = useState(true);
-  const [firebaseApp] = useState(inBrowser ? initializeApp(config) : undefined);
-  const [firebaseAuth] = useState(firebaseApp ? getAuth(firebaseApp) : undefined);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [firebaseApp] = useState<FirebaseApp | undefined>(inBrowser ? initializeApp(config) : undefined);
+  const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
   const jwt = useJWT(user);
 

@@ -22,6 +22,7 @@ jobs:
         with:
           node-version: 16.14.2
           cache: "npm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install Dependencies
         run: npm ci
@@ -29,13 +30,7 @@ jobs:
       - name: Build Source
         run: npm run build
 
-      - name: Switch Registry
-        uses: actions/setup-node@v3
-        with:
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@bluesky-digital-labs"
-
       - name: Publish Package
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
