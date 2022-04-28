@@ -6,7 +6,7 @@ import { FirebaseProvider, getToken } from "@bluesky-digital-labs/next-firebase-
 
 function MyApp({ Component, pageProps, jwt }: AppProps & { jwt: string }) {
   return (
-    <FirebaseProvider initialJwt={jwt}>
+    <FirebaseProvider initialJwt={jwt} useEmulator>
       <Component {...pageProps} />
     </FirebaseProvider>
   );

@@ -18,6 +18,12 @@ const AuthLoginPage = () => {
     router.push("/");
   };
 
+  const handleGoogle = async () => {
+    await auth.google();
+
+    router.push("/");
+  };
+
   return (
     <>
       <h2>Login</h2>
@@ -34,7 +40,7 @@ const AuthLoginPage = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <button onClick={auth.google}>Login With Google</button>
+      <button onClick={handleGoogle}>Login With Google</button>
       <Link href="/auth/register">Register</Link>
       <Link href="/auth/forgot-password">Forgot Password</Link>
     </>
