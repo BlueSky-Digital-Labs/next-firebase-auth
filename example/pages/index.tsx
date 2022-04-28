@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const token = getToken(context.req);
 
   // pass this through header (in axios) to the api
-  console.log({ token, url: context.resolvedUrl });
+  // console.log({ token, url: context.resolvedUrl });
 
   // when the token is not present, it is more likely that the users token needs to be refreshed
   // so send them to this page, that gets them a new token from firebase
@@ -47,13 +47,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const AuthButtons = () => {
-  const { user, loading, logout, auth } = useFirebase();
+  const { loggedIn, logout } = useFirebase();
 
-  if (loading) {
-    return <span>Loading...</span>;
-  }
-
-  if (!user) {
+  if (!loggedIn) {
     return (
       <>
         <Link href="/auth/login" passHref>
@@ -61,10 +57,16 @@ const AuthButtons = () => {
             <button>Login</button>
           </a>
         </Link>
-        <button onClick={auth.google}>Login with Google</button>
+        <LoginWithGoogle />
       </>
     );
   }
 
   return <button onClick={logout}>Logout</button>;
+};
+
+const LoginWithGoogle = () => {
+  const { auth } = useFirebase();
+
+  return <button onClick={auth.google}>Login with Google</button>;
 };
