@@ -1,6 +1,6 @@
 {
   "name": "@bluesky-digital-labs/next-firebase-auth",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "license": "MIT",
   "private": false,
   "description": "A collection of providers, hooks and functions to authenticate users using firebase in Next.js",
