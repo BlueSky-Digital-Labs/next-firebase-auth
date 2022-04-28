@@ -51,6 +51,7 @@ export const FirebaseProvider = ({
   const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
   const jwt = useJWT(user, initialJwt);
+  const origin = inBrowser ? window.location.origin : "";
 
   useEffect(() => {
     if (firebaseAuth && useEmulator) {
@@ -94,7 +95,7 @@ export const FirebaseProvider = ({
         if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
         const { user } = await createUserWithEmailAndPassword(firebaseAuth, email, password);
         await sendEmailVerification(user, {
-          url: redirect,
+          url: origin + redirect,
         });
         return;
       },
