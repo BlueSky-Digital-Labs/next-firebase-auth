@@ -5,6 +5,7 @@
   "private": false,
   "description": "A collection of providers, hooks and functions to authenticate users using firebase in Next.js",
   "type": "module",
+  "sideEffects": false,
   "source": "src/index.ts",
   "exports": {
     "require": "./dist/index.cjs",
