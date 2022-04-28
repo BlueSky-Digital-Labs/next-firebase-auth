@@ -4,10 +4,10 @@ import type { Auth, User } from "firebase/auth";
 import {
   applyActionCode,
   confirmPasswordReset,
+  connectAuthEmulator,
   createUserWithEmailAndPassword,
   FacebookAuthProvider,
   getAuth,
-  connectAuthEmulator,
   GithubAuthProvider,
   GoogleAuthProvider,
   OAuthProvider,
@@ -24,9 +24,8 @@ import {
   updatePassword,
   verifyPasswordResetCode,
 } from "firebase/auth";
-import { destroyCookie } from "nookies";
 import React, { useEffect, useState } from "react";
-import { config, JWT_COOKIE_NAME } from "../config";
+import { config } from "../config";
 import { FirebaseContext } from "./FirebaseContext";
 import { Credentials, FirebaseStore } from "./FirebaseStore";
 import { useJWT } from "./useJWT";
@@ -50,7 +49,7 @@ export const FirebaseProvider = ({
   const [firebaseApp] = useState<FirebaseApp | undefined>(inBrowser ? initializeApp(config) : undefined);
   const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
-  const jwt = useJWT(user, initialJwt);
+  const { jwt, clear } = useJWT(user, initialJwt);
   const origin = inBrowser ? window.location.origin : "";
 
   useEffect(() => {
@@ -73,7 +72,7 @@ export const FirebaseProvider = ({
   const logout = async () => {
     if (!firebaseAuth) throw new Error("Firebase Auth has not be initialised yet");
     await signOut(firebaseAuth);
-    destroyCookie(null, JWT_COOKIE_NAME);
+    clear();
     return;
   };
 

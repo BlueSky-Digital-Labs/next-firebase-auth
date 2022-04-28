@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import { setCookie } from "nookies";
+import { destroyCookie, setCookie } from "nookies";
 import { useEffect, useState } from "react";
 import { JWT_COOKIE_NAME } from "../config";
 
@@ -27,5 +27,10 @@ export const useJWT = (user: User | null, initialJwt?: string) => {
     })();
   }, [user]);
 
-  return jwt;
+  const clear = () => {
+    destroyCookie(null, JWT_COOKIE_NAME);
+    setJwt(undefined)
+  }
+
+  return { jwt, clear };
 };
