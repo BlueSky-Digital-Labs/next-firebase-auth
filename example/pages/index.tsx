@@ -4,13 +4,15 @@ import Link from "next/link";
 import { getToken, useFirebase } from "@bluesky-digital-labs/next-firebase-auth";
 
 function HomePage() {
-  const { user } = useFirebase();
+  const { user, claims } = useFirebase();
+
+  const isAdmin = claims?.role === "admin";
 
   return (
     <>
       <main>
         <AuthButtons />
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        <pre>{JSON.stringify({ user, claims, isAdmin }, null, 2)}</pre>
       </main>
     </>
   );
