@@ -1,5 +1,5 @@
 import type { FirebaseApp } from "firebase/app";
-import type { Auth, User } from "firebase/auth";
+import type { Auth, User, ParsedToken } from "firebase/auth";
 
 // You may ask why are all the login functions returning void when they could return the user
 // this is to force developers to use the firebase hook to access user instead of trying
@@ -8,6 +8,7 @@ import type { Auth, User } from "firebase/auth";
 export interface FirebaseStore {
   user: User | null;
   jwt: string | undefined;
+  claims: ParsedToken | undefined;
   loading: boolean;
   loggedIn: boolean;
   logout: () => Promise<void>;

@@ -49,7 +49,7 @@ export const FirebaseProvider = ({
   const [firebaseApp] = useState<FirebaseApp | undefined>(inBrowser ? initializeApp(config) : undefined);
   const [firebaseAuth] = useState<Auth | undefined>(firebaseApp ? getAuth(firebaseApp) : undefined);
   const [user, setUser] = useState<User | null>(null);
-  const { jwt, clear } = useJWT(user, initialJwt);
+  const { jwt, claims, clear } = useJWT(user, initialJwt);
   const origin = inBrowser ? window.location.origin : "";
 
   useEffect(() => {
@@ -200,6 +200,7 @@ export const FirebaseProvider = ({
   const values: FirebaseStore = {
     user,
     jwt,
+    claims,
     auth,
     logout,
     loading,

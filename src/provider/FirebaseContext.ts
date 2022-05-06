@@ -8,6 +8,7 @@ const ErrorFunction = async () => {
 export const FirebaseContext = createContext<FirebaseStore>({
   user: null,
   jwt: undefined,
+  claims: undefined,
   loading: true,
   loggedIn: false,
   logout: ErrorFunction,

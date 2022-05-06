@@ -1,10 +1,11 @@
-import { User } from "firebase/auth";
+import type { ParsedToken, User } from "firebase/auth";
 import { destroyCookie, setCookie } from "nookies";
 import { useEffect, useState } from "react";
 import { JWT_COOKIE_NAME } from "../config";
 
 export const useJWT = (user: User | null, initialJwt?: string) => {
   const [jwt, setJwt] = useState<string | undefined>(initialJwt);
+  const [claims, setClaims] = useState<ParsedToken | undefined>(undefined);
 
   useEffect(() => {
     if (!user) return;
@@ -13,7 +14,9 @@ export const useJWT = (user: User | null, initialJwt?: string) => {
 
       setJwt(jwt);
 
-      const { expirationTime } = await user.getIdTokenResult();
+      const { expirationTime, claims } = await user.getIdTokenResult();
+
+      setClaims(claims);
 
       // expiration time is the date when the token expires, maxAge is how many seconds in the future it will expire
       const maxAge = Math.floor((new Date(expirationTime).getTime() - Date.now()) / 1000);
@@ -29,8 +32,8 @@ export const useJWT = (user: User | null, initialJwt?: string) => {
 
   const clear = () => {
     destroyCookie(null, JWT_COOKIE_NAME);
-    setJwt(undefined)
-  }
+    setJwt(undefined);
+  };
 
-  return { jwt, clear };
+  return { jwt, claims, clear };
 };
